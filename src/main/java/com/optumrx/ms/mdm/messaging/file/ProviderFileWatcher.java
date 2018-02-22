@@ -26,7 +26,16 @@ public class ProviderFileWatcher {
 
     public void watchProviderFiles() {
         Path watchDir = Paths.get(watchPath);
+        // processing existing incoming files
+        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(watchPath))) {
+            for (Path path : directoryStream) {
+                processProviderFile(path);
+            }
+        } catch (Exception ex) {
+            logger.error("Error with directory listing.", ex);
+        }
         while (true) {
+            // processing new incoming files
             try {
                 WatchService watcher = FileSystems.getDefault().newWatchService();
                 watchDir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
@@ -47,16 +56,20 @@ public class ProviderFileWatcher {
                     Path filename = ev.context();
                     logger.info("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
                     Path incomingFile = watchDir.resolve(filename);
-                    Path processFile = moveFile(incomingFile, PROCESSING, true);
-                    fileLoader.processProviderFile(processFile);
-                    moveFile(processFile, ARCHIVED, false);
-                    logger.info("Completed loading " + incomingFile.getFileName() + " to Kafka");
+                    processProviderFile(incomingFile);
                 }
                 watchKey.reset();
             } catch (Exception ex) {
                 logger.error("Error with directory watching at : " + watchDir, ex);
             }
         }
+    }
+
+    private void processProviderFile(Path incomingFile) throws Exception {
+        Path processFile = moveFile(incomingFile, PROCESSING, true);
+        fileLoader.processProviderFile(processFile);
+        moveFile(processFile, ARCHIVED, false);
+        logger.info("Completed loading " + incomingFile.getFileName() + " to Kafka");
     }
 
     private Path moveFile(Path fileToMove, String target, boolean appendTimestamps) throws IOException {
