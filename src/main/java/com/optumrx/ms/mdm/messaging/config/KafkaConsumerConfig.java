@@ -39,7 +39,7 @@ public class KafkaConsumerConfig {
     private String valueSerializer;
 
     @Bean
-    KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(3);
@@ -66,8 +66,18 @@ public class KafkaConsumerConfig {
         return propsMap;
     }
 
-    @Bean
-    public Listener listener() {
+/*    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String>
+    kafkaListenerContainerFactory() {
+
+        ConcurrentKafkaListenerContainerFactory<String, String> factory
+                = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }*/
+
+    //@Bean
+/*    public Listener listener() {
         return new Listener();
-    }
+    }*/
 }

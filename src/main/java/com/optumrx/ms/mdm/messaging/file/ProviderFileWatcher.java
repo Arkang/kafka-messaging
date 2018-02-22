@@ -3,6 +3,7 @@ package com.optumrx.ms.mdm.messaging.file;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,18 +16,22 @@ public class ProviderFileWatcher {
     private static final String PROCESSING = "processing";
     private static final String ARCHIVED = "archived";
 
+    @Value("${kafka.producer.incoming.path}")
+    private String watchPath;
+
     @Autowired
     private ProviderFileLoader fileLoader;
 
     private static final Logger logger = LogManager.getLogger(ProviderFileWatcher.class);
 
-    public void watchProviderFiles(String path) {
-        Path watchDir = Paths.get(path);
-        try {
-            WatchService watcher = FileSystems.getDefault().newWatchService();
-            watchDir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
-            WatchKey watchKey;
-            while (true) {
+    public void watchProviderFiles() {
+        Path watchDir = Paths.get(watchPath);
+        while (true) {
+            try {
+                WatchService watcher = FileSystems.getDefault().newWatchService();
+                watchDir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
+                WatchKey watchKey;
+
                 try {
                     watchKey = watcher.take();
                 } catch (InterruptedException ex) {
@@ -42,23 +47,30 @@ public class ProviderFileWatcher {
                     Path filename = ev.context();
                     logger.info("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
                     Path incomingFile = watchDir.resolve(filename);
-                    Path processFile = moveFile(incomingFile, PROCESSING);
+                    Path processFile = moveFile(incomingFile, PROCESSING, true);
                     fileLoader.processProviderFile(processFile);
-                    moveFile(processFile, ARCHIVED);
+                    moveFile(processFile, ARCHIVED, false);
                     logger.info("Completed loading " + incomingFile.getFileName() + " to Kafka");
                 }
                 watchKey.reset();
+            } catch (Exception ex) {
+                logger.error("Error with directory watching at : " + watchDir, ex);
             }
-        } catch (Exception ex) {
-            logger.error("Error with directory watching at : " + watchDir, ex);
         }
     }
 
-    private Path moveFile(Path fileToMove, String target) throws IOException {
-        Path parentPath = fileToMove.getParent();
+    private Path moveFile(Path fileToMove, String target, boolean appendTimestamps) throws IOException {
+        Path parentPath = fileToMove.getParent().getParent();
         Path targetPath = parentPath.resolve(target);
-        Files.move(fileToMove, targetPath.resolve(fileToMove.getFileName()));
-        return targetPath.resolve(fileToMove.getFileName());
+        Path targetFile = null;
+        if (appendTimestamps) {
+            String timestamps = "-" + System.currentTimeMillis();
+            targetFile = targetPath.resolve(fileToMove.getFileName() + timestamps);
+        } else {
+            targetFile = targetPath.resolve(fileToMove.getFileName());
+        }
+        Files.move(fileToMove, targetFile);
+        return targetFile;
     }
 
 }

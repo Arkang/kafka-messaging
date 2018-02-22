@@ -43,7 +43,7 @@ public class ProviderKafkaProducer {
             future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
                 @Override
                 public void onSuccess(SendResult<String, String> result) {
-                    logger.info("Sent message: " + result);
+                    logger.info("Sent message: " + result.getRecordMetadata());
                 }
 
                 @Override
