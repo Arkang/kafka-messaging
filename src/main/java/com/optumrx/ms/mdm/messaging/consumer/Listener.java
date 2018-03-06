@@ -1,10 +1,8 @@
-package com.optumrx.ms.mdm.messaging.config;
+package com.optumrx.ms.mdm.messaging.consumer;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CountDownLatch;
