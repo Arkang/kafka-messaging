@@ -1,9 +1,12 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ARG JAR_FILE
-RUN echo "$JAR_FILE"
 RUN mkdir -p /logs
 RUN chmod 777 /logs
 #COPY $JAR_FILE mdm-messaging.jar
-COPY mdm-messaging-*.jar mdm-messaging.jar
+ARG url
+ARG release
+ARG artifact
+#ADD mdm-messaging-*.jar mdm-messaging.jar
+RUN echo "${url}${release}${artifact}"
+ADD ${url}${release}${artifact} mdm-messaging.jar
 ENTRYPOINT [ "java", "-jar", "mdm-messaging.jar" ]
