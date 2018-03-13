@@ -17,6 +17,7 @@
     <Loggers>
         <Root level="info">
             <AppenderRef ref="file"/>
+            <AppenderRef ref="STDOUT"/>
         </Root>
         <Logger name="com.optumrx.ms.mdm.messaging" level="info"/>
     </Loggers>
