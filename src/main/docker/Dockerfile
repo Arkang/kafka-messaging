@@ -3,5 +3,5 @@ VOLUME /tmp
 ARG JAR_FILE
 RUN mkdir -p /logs
 RUN chmod 777 /logs
-COPY $WORKSPACE/target/mdm-messaging-*.jar mdm-messaging.jar
+COPY JAR_FILE mdm-messaging.jar
 ENTRYPOINT [ "java", "-jar", "mdm-messaging.jar" ]
