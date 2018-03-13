@@ -9,4 +9,5 @@ ARG artifact
 #ADD mdm-messaging-*.jar mdm-messaging.jar
 RUN echo "${url}${release}${artifact}"
 ADD ${url}${release}${artifact} mdm-messaging.jar
+RUN chmod 644 /mdm-messaging.jar
 ENTRYPOINT [ "java", "-jar", "mdm-messaging.jar" ]
