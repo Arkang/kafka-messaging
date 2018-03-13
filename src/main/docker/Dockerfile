@@ -5,5 +5,5 @@ RUN echo "$JAR_FILE"
 RUN mkdir -p /logs
 RUN chmod 777 /logs
 #COPY $JAR_FILE mdm-messaging.jar
-COPY /home/jenkins/workspace/ww-poc-test/target/mdm-messaging-0.0.1-SNAPSHOT.jar mdm-messaging.jar
+COPY com.optumrx.ms.mdm/mdm-messaging/0.0.1-SNAPSHOT/mdm-messaging-0.0.1-SNAPSHOT.jar mdm-messaging.jar
 ENTRYPOINT [ "java", "-jar", "mdm-messaging.jar" ]
