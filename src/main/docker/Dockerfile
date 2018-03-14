@@ -6,13 +6,14 @@ RUN mkdir -p /data/processing
 RUN mkdir -p /data/archived
 RUN mkdir -p /logs
 RUN chmod 777 /logs
-ARG sh_dir
+ARG env
 ARG url
 ARG release
 ARG artifact
-RUN echo "${sh_dir}"
+RUN echo "${env}"
 RUN echo "${url}${release}${artifact}"
-COPY ${sh_dir}/startup.sh startup.sh
+#COPY ${sh_dir}/startup.sh startup.sh
+RUN echo "java -DServerEnvironment=${env} -jar mdm-messaging.jar" > startup.sh
 RUN chmod 755 startup.sh
 ADD ${url}${release}${artifact} mdm-messaging.jar
 RUN chmod 644 mdm-messaging.jar
