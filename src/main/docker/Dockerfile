@@ -13,7 +13,7 @@ ARG artifact
 RUN echo "${env}"
 RUN echo "${url}${release}${artifact}"
 #COPY ${sh_dir}/startup.sh startup.sh
-RUN echo "java -DServerEnvironment=${env} -jar mdm-messaging.jar" > startup.sh
+RUN echo "java -DServerEnvironment=${env} -jar /mdm-messaging.jar" > startup.sh
 RUN chmod 755 startup.sh
 ADD ${url}${release}${artifact} mdm-messaging.jar
 RUN chmod 644 mdm-messaging.jar
