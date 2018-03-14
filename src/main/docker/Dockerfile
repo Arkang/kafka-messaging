@@ -14,4 +14,4 @@ RUN echo "${env}"
 RUN echo "${url}${release}${artifact}"
 ADD ${url}${release}${artifact} mdm-messaging.jar
 RUN chmod 644 mdm-messaging.jar
-ENTRYPOINT [ "sh", "-c", "java", "-DServerEnvironment=${env}", "-jar", "mdm-messaging.jar" ]
+ENTRYPOINT java -DServerEnvironment="${env}" -jar mdm-messaging.jar
