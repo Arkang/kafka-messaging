@@ -24,4 +24,4 @@ ADD ${url}${release}${artifact} mdm-messaging.jar
 RUN chmod 644 mdm-messaging.jar
 #ENTRYPOINT java -DServerEnvironment="${env}" -jar mdm-messaging.jar
 #ENTRYPOINT ["./startup.sh"]
-#ENTRYPOINT ["sh", "-c", "pwd"]
+ENTRYPOINT ["sh", "-c", "pwd"]
