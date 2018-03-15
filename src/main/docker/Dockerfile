@@ -30,8 +30,8 @@ RUN echo '' >> startup.sh && \
 #RUN echo 'echo $log4j_configurationFile >> /tmp/env.txt' >> startup.sh
 #RUN echo '' >> startup.sh
 RUN echo 'mkdir /tmp/incoming' >> startup.sh && \
-RUN echo 'mkdir /tmp/processing' >> startup.sh && ]
-RUN echo 'mkdir /tmp/archived' >> startup.sh && ]
+RUN echo 'mkdir /tmp/processing' >> startup.sh && \
+RUN echo 'mkdir /tmp/archived' >> startup.sh && \
 RUN echo '' >> startup.sh && \
 RUN echo 'java -DServerEnvironment="$ServerEnvironment" -jar mdm-messaging.jar' >> startup.sh
 RUN chmod 755 startup.sh
