@@ -28,6 +28,5 @@ RUN echo 'done' >> startup.sh
 RUN chmod 755 startup.sh
 ADD ${url}${release}${artifact} mdm-messaging.jar
 RUN chmod 644 mdm-messaging.jar
-#ENTRYPOINT java -DServerEnvironment="${env}" -jar mdm-messaging.jar
-ENTRYPOINT ["./startup.sh"]
-#ENTRYPOINT ["sh", "-c", "pwd"]
+ENTRYPOINT ["java", "-DServerEnvironment=test", "-jar", "mdm-messaging.jar"]
+#ENTRYPOINT ["./startup.sh"]
