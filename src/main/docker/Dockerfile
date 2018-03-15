@@ -22,7 +22,13 @@ RUN echo "${env}"
 RUN echo "${url}${release}${artifact}"
 #COPY ${sh_dir}/startup.sh startup.sh
 #RUN echo "java -DServerEnvironment=${env} -jar /mdm-messaging.jar >logs/test.log 2>&1" > startup.sh
+
+RUN echo "$ServerEnvironment" >
 RUN echo '#!/bin/sh' >> startup.sh
+RUN echo '' >> startup.sh
+# checking environment variables
+RUN echo 'echo "$ServerEnvironment" >> /tmp/env.txt' >> startup.sh
+RUN echo 'echo "$log4j_configurationFile" >> /tmp/env.txt' >> startup.sh
 RUN echo '' >> startup.sh
 RUN echo 'mkdir /tmp/incoming' >> startup.sh
 RUN echo 'mkdir /tmp/processing' >> startup.sh
