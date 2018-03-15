@@ -1,9 +1,14 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /data
-RUN chmod 777 /data
-RUN mkdir -p /data/incoming
-RUN mkdir -p /data/processing
-RUN mkdir -p /data/archived
+#VOLUME /data
+#RUN chmod 777 /data
+#RUN mkdir -p /data/incoming
+#RUN mkdir -p /data/processing
+#RUN mkdir -p /data/archived
+VOLUME /tmp
+RUN chmod 777 /tmp
+RUN mkdir -p /tmp/incoming
+RUN mkdir -p /tmp/processing
+RUN mkdir -p /tmp/archived
 RUN mkdir -p /logs
 RUN chmod 777 /logs
 ARG env
