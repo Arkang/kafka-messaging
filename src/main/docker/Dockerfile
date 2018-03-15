@@ -27,8 +27,8 @@ RUN echo "$ServerEnvironment" >
 RUN echo '#!/bin/sh' >> startup.sh
 RUN echo '' >> startup.sh
 # checking environment variables
-RUN echo 'echo "$ServerEnvironment" >> /tmp/env.txt' >> startup.sh
-RUN echo 'echo "$log4j_configurationFile" >> /tmp/env.txt' >> startup.sh
+RUN echo 'echo $ServerEnvironment >> /tmp/env.txt' >> startup.sh
+RUN echo 'echo $log4j_configurationFile >> /tmp/env.txt' >> startup.sh
 RUN echo '' >> startup.sh
 RUN echo 'mkdir /tmp/incoming' >> startup.sh
 RUN echo 'mkdir /tmp/processing' >> startup.sh
