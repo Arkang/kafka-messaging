@@ -23,16 +23,16 @@ RUN echo "${url}${release}${artifact}"
 #COPY ${sh_dir}/startup.sh startup.sh
 #RUN echo "java -DServerEnvironment=${env} -jar /mdm-messaging.jar >logs/test.log 2>&1" > startup.sh
 
-RUN echo '#!/bin/sh' > startup.sh && \
-RUN echo '' >> startup.sh && \
+RUN echo '#!/bin/sh' > startup.sh
+RUN echo '' >> startup.sh
 # checking environment variables
 #RUN echo 'print $ServerEnvironment >> /tmp/env.txt' >> startup.sh
 #RUN echo 'echo $log4j_configurationFile >> /tmp/env.txt' >> startup.sh
 #RUN echo '' >> startup.sh
-RUN echo 'mkdir /tmp/incoming' >> startup.sh && \
-RUN echo 'mkdir /tmp/processing' >> startup.sh && \
-RUN echo 'mkdir /tmp/archived' >> startup.sh && \
-RUN echo '' >> startup.sh && \
+RUN echo 'mkdir /tmp/incoming' >> startup.sh
+RUN echo 'mkdir /tmp/processing' >> startup.sh
+RUN echo 'mkdir /tmp/archived' >> startup.sh
+RUN echo '' >> startup.sh
 RUN echo 'java -DServerEnvironment="$ServerEnvironment" -jar mdm-messaging.jar' >> startup.sh
 RUN chmod 755 startup.sh
 ADD ${url}${release}${artifact} mdm-messaging.jar
