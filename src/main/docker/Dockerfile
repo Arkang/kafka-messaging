@@ -11,9 +11,9 @@ RUN echo "${url}${release}${artifact}"
 
 RUN echo '#!/bin/sh' > startup.sh && \
 echo '' >> startup.sh && \
-echo 'mkdir /tmp/incoming' >> startup.sh && \
-echo 'mkdir /tmp/processing' >> startup.sh && \
-echo 'mkdir /tmp/archived' >> startup.sh && \
+echo 'mkdir -p /tmp/incoming' >> startup.sh && \
+echo 'mkdir -p /tmp/processing' >> startup.sh && \
+echo 'mkdir -p /tmp/archived' >> startup.sh && \
 echo '' >> startup.sh && \
 echo 'java -DServerEnvironment="$ServerEnvironment" ' >> startup.sh && \
 echo '-Xms512m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=256m -Dsun.rmi.dgc.server.gcInterval=3600000 -XX:+UseParallelOldGC -XX:+DisableExplicitGC -verbose:gc -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -Xloggc:logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=logs/OOMheapdump.hprof ' >> startup.sh && \
