@@ -9,6 +9,8 @@ ARG release
 ARG artifact
 RUN echo "${url}${release}${artifact}"
 
+RUN echo "testing demo on 3/26" > test.txt
+
 RUN echo '#!/bin/sh' > startup.sh && \
 echo '' >> startup.sh && \
 echo 'mkdir -p /tmp/incoming' >> startup.sh && \
