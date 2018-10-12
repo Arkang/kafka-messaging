@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.file;
+package demo.kafka.messaging.file;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Component
 public class ProviderFileLoader {

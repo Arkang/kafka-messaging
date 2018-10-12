@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.config;
+package demo.kafka.messaging.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;

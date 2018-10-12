@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging;
+package demo.kafka.messaging;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

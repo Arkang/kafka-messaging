@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.consumer;
+package demo.kafka.messaging.consumer;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.serialization.LongDeserializer;

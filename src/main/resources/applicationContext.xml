@@ -13,7 +13,7 @@
             location="classpath:#{systemProperties['ServerEnvironment']}.properties"
             ignore-resource-not-found="false" ignore-unresolvable="false" order="2"/>
 
-    <context:component-scan base-package="com.optumrx.ms.mdm.messaging"/>
+    <context:component-scan base-package="demo.kafka.messaging"/>
     <context:annotation-config/>
 
 </beans>

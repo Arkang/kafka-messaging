@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.consumer;
+package demo.kafka.messaging.consumer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,8 +1,6 @@
-package com.optumrx.ms.mdm.messaging;
+package demo.kafka.messaging;
 
-import com.optumrx.ms.mdm.messaging.consumer.KafkaConsumerExample;
-import com.optumrx.ms.mdm.messaging.file.ProviderFileLoader;
-import com.optumrx.ms.mdm.messaging.file.ProviderFileWatcher;
+import demo.kafka.messaging.file.ProviderFileWatcher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

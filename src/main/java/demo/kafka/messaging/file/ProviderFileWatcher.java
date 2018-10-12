@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.file;
+package demo.kafka.messaging.file;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

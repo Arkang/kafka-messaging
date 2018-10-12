@@ -1,4 +1,4 @@
-package com.optumrx.ms.mdm.messaging.producer;
+package demo.kafka.messaging.producer;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.LongSerializer;
