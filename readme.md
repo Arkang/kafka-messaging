@@ -1,1 +1,1 @@
-# POC of Kafka for Provider MDM project
+#Kafka as messaging system.

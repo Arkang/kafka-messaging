@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.uhg.optumrx.ms</groupId>
-	<artifactId>mdm-messaging</artifactId>
+	<artifactId>kafka-messaging</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mdm-messaging</name>
+	<name>kafka-messaging</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
