@@ -73,8 +73,8 @@ public class ProviderFileWatcher {
     }
 
     private Path moveFile(Path fileToMove, String target, boolean appendTimestamps) throws IOException {
-        Path parentPath = fileToMove.getParent().getParent();
-        Path targetPath = parentPath.resolve(target);
+        Path twoLevelParentPath = fileToMove.getParent().getParent();
+        Path targetPath = twoLevelParentPath.resolve(target);
         Path targetFile = null;
         if (appendTimestamps) {
             String timestamps = "-" + System.currentTimeMillis();

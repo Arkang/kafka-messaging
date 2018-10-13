@@ -14,13 +14,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ImportResource("classpath:applicationContext.xml")
 public class MdmMessagingApplication {
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext context = SpringApplication.run(MdmMessagingApplication.class, args);
-		//context.getBean(KafkaProducerExample.class).runProducer(5);
+        //context.getBean(KafkaProducerExample.class).runProducer(5);
         //context.getBean(KafkaConsumerExample.class).runConsumer(5);
         //context.getBean(ProviderFileLoader.class).processProviderFile("C:\\Software\\documents\\RxLink.notes");
         //context.getBean(ProviderFileLoader.class).processProviderFile("H:\\db_backup\\preferred_alt_esb.sql");
         context.getBean(ProviderFileWatcher.class).watchProviderFiles();
-	}
+    }
 
 }

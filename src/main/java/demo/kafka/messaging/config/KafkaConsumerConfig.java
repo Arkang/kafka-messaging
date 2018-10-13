@@ -1,7 +1,6 @@
 package demo.kafka.messaging.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,18 +65,4 @@ public class KafkaConsumerConfig {
         return propsMap;
     }
 
-/*    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String>
-    kafkaListenerContainerFactory() {
-
-        ConcurrentKafkaListenerContainerFactory<String, String> factory
-                = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-        return factory;
-    }*/
-
-    //@Bean
-/*    public Listener listener() {
-        return new Listener();
-    }*/
 }
