@@ -1,5 +1,6 @@
 package demo.kafka.messaging.consumer;
 
+import demo.kafka.messaging.domain.Message;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -18,8 +19,8 @@ public class Listener {
     @KafkaListener(id = "${kafka.consumer.id}",
             topicPartitions = { @TopicPartition(topic = "${kafka.consumer.topic}", partitions = { "0" }) },
             groupId = "${kafka.consumer.group}")
-    public void listen(String record) {
-        logger.info("Received: " + record);
+    public void listen(Message msg) {
+        logger.info("Received: " + msg);
         //countDownLatch1.countDown();
     }
 

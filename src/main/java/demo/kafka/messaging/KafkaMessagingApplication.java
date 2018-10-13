@@ -15,10 +15,6 @@ public class KafkaMessagingApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(KafkaMessagingApplication.class, args);
-        //context.getBean(KafkaProducerExample.class).runProducer(5);
-        //context.getBean(KafkaConsumerExample.class).runConsumer(5);
-        //context.getBean(ProviderFileLoader.class).processProviderFile("C:\\Software\\documents\\RxLink.notes");
-        //context.getBean(ProviderFileLoader.class).processProviderFile("H:\\db_backup\\preferred_alt_esb.sql");
         context.getBean(ProviderFileWatcher.class).watchProviderFiles();
     }
 
