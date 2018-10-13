@@ -11,11 +11,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
-@ImportResource("classpath:applicationContext.xml")
-public class MdmMessagingApplication {
+public class KafkaMessagingApplication {
 
-    public static void main(String[] args) throws Exception {
-        ConfigurableApplicationContext context = SpringApplication.run(MdmMessagingApplication.class, args);
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(KafkaMessagingApplication.class, args);
         //context.getBean(KafkaProducerExample.class).runProducer(5);
         //context.getBean(KafkaConsumerExample.class).runConsumer(5);
         //context.getBean(ProviderFileLoader.class).processProviderFile("C:\\Software\\documents\\RxLink.notes");

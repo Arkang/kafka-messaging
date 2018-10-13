@@ -2,7 +2,7 @@ package demo.kafka.messaging;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-public class MdmMessagingApplicationTests {
+public class KafkaMessagingApplicationTests {
 
     //@Test
     public void contextLoads() {

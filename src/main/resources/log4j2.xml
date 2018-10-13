@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
-		<RollingFile name="file" fileName="logs/mdm_messaging.log" filePattern="logs/mdm_messaging-%d{yyyy-MM-dd}-%i.log.gz">
+		<RollingFile name="file" fileName="logs/kafka_messaging.log" filePattern="logs/kafka_messaging-%d{yyyy-MM-dd}-%i.log.gz">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %c{1.}:%M():%L - %msg%n"/>
 			<Policies>
 				<SizeBasedTriggeringPolicy size="100 MB"/>
@@ -19,6 +19,6 @@
 			<AppenderRef ref="file"/>
 			<AppenderRef ref="STDOUT"/>
 		</Root>
-		<Logger name="com.optumrx.ms.mdm.messaging" level="info"/>
+		<Logger name="demo.kafka.messaging" level="info"/>
 	</Loggers>
 </Configuration>
