@@ -38,10 +38,19 @@ public class KafkaConsumerConfig {
     @Value("${kafka.consumer.value.serializer}")
     private String valueSerializer;
 
-    @Bean
+    @Bean("kafkaListenerContainerFactory")
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Message>> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        factory.setConcurrency(1);
+        factory.getContainerProperties().setPollTimeout(pollTimeout);
+        return factory;
+    }
+
+    @Bean("kafkaListenerContainerFactory1")
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Message>> kafkaListenerContainerFactory1() {
+        ConcurrentKafkaListenerContainerFactory<String, Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory1());
         factory.setConcurrency(1);
         factory.getContainerProperties().setPollTimeout(pollTimeout);
         return factory;
@@ -53,10 +62,15 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
+    public ConsumerFactory<String, Message> consumerFactory1() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
+    }
+
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> propsMap = new HashMap<>();
         propsMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
         propsMap.put(ConsumerConfig.GROUP_ID_CONFIG, group);
+        //propsMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         propsMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, autoCommit);
         propsMap.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, autoCommitInterval);
         propsMap.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, sessionTimeout);
